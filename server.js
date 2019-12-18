@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const morgan = require("morgan");
 const connectDatabase = require("./config/db");
 
 // Load ENV variables
@@ -9,6 +10,11 @@ dotenv.config({ path: "./config/config.env" });
 connectDatabase();
 
 const app = express();
+
+// Dev logging middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
 const PORT = process.env.PORT || 5000;
 
