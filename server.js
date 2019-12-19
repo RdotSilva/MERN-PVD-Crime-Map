@@ -9,12 +9,21 @@ dotenv.config({ path: "./config/config.env" });
 // Connect to DB
 connectDatabase();
 
+// Route files
+const auth = require("./routes/auth");
+
 const app = express();
+
+// Body parser
+app.use(express.json());
 
 // Dev logging middleware
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+// Mount Routers
+app.use("/api/v1/auth", auth);
 
 const PORT = process.env.PORT || 5000;
 
