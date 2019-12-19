@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 const connectDatabase = require("./config/db");
 
 // Load ENV variables
@@ -16,6 +17,8 @@ const app = express();
 
 // Body parser
 app.use(express.json());
+
+app.use(cookieParser());
 
 // Dev logging middleware
 if (process.env.NODE_ENV === "development") {
