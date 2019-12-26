@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: 200
+    },
+    button: {
+      margin: theme.spacing(1)
     }
   }
 }));
