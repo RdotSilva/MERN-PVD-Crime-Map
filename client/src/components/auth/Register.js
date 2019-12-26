@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
+// Styles used for Material UI
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiTextField-root": {
@@ -28,10 +29,12 @@ const Register = () => {
 
   const { name, email, password, password2 } = formData;
 
+  // Handle input change for text fields using [e.target.name] to select the unique name for each text field.
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Check passwords match. Temporarily console log for testing. Later this will handle error properly.
   const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
