@@ -17,6 +17,67 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = () => {};
+const Login = () => {
+  const classes = useStyles();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+
+  const { email, password } = formData;
+
+  // Handle input change for text fields using [e.target.name] to select the unique name for each text field.
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Check passwords match. Temporarily console log for testing. Later this will handle error properly.
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log("LOGIN SUCCESS");
+  };
+
+  return (
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+      onSubmit={e => onSubmit(e)}
+    >
+      <div>
+        <TextField
+          id="outlined-name"
+          label="Email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          variant="outlined"
+          required
+        />
+      </div>
+      <div>
+        <TextField
+          id="outlined-name"
+          label="Password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          variant="outlined"
+          required
+        />
+      </div>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        endIcon={<Icon>send</Icon>}
+        type="submit"
+      >
+        Login
+      </Button>
+    </form>
+  );
+};
 
 export default Login;
