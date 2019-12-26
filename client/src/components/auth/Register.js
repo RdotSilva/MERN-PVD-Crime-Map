@@ -28,5 +28,20 @@ const Register = () => {
   };
 
   return (
-  )
+    <form className={classes.root} noValidate autoComplete="off">
+      <div>
+        <TextField
+          id="outlined-name"
+          label="Name"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          variant="outlined"
+          required
+        />
+      </div>
+    </form>
+  );
 };
+
+export default Register;
