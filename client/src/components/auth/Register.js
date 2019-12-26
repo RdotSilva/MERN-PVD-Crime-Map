@@ -22,4 +22,11 @@ const Register = () => {
   });
 
   const { name, email, password, password2 } = formData;
+
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+  )
 };
