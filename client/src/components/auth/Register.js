@@ -40,6 +40,17 @@ const Register = () => {
           required
         />
       </div>
+      <div>
+        <TextField
+          id="outlined-name"
+          label="Email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          variant="outlined"
+          required
+        />
+      </div>
     </form>
   );
 };
