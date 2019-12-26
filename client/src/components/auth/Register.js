@@ -62,6 +62,17 @@ const Register = () => {
           required
         />
       </div>
+      <div>
+        <TextField
+          id="outlined-name"
+          label="Confirm Password"
+          name="password2"
+          value={password2}
+          onChange={handleChange}
+          variant="outlined"
+          required
+        />
+      </div>
     </form>
   );
 };
