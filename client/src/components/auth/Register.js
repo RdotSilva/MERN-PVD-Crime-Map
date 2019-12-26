@@ -37,7 +37,12 @@ const Register = () => {
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+      onSubmit={e => onSubmit(e)}
+    >
       <div>
         <TextField
           id="outlined-name"
