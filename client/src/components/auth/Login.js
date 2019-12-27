@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -39,44 +40,50 @@ const Login = () => {
   };
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-      onSubmit={e => onSubmit(e)}
-    >
-      <div>
-        <TextField
-          id="outlined-name"
-          label="Email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          variant="outlined"
-          required
-        />
-      </div>
-      <div>
-        <TextField
-          id="outlined-name"
-          label="Password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-          variant="outlined"
-          required
-        />
-      </div>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        endIcon={<Icon>send</Icon>}
-        type="submit"
+    <Fragment>
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={e => onSubmit(e)}
       >
-        Login
-      </Button>
-    </form>
+        <div>
+          <TextField
+            id="outlined-name"
+            label="Email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+            variant="outlined"
+            required
+          />
+        </div>
+        <div>
+          <TextField
+            id="outlined-name"
+            label="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            variant="outlined"
+            required
+          />
+        </div>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          endIcon={<Icon>send</Icon>}
+          type="submit"
+        >
+          Login
+        </Button>
+      </form>
+      <p>
+        Don't have an account?
+        <Link to="/register">Sign Up</Link>
+      </p>
+    </Fragment>
   );
 };
 
