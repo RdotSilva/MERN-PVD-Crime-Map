@@ -1,10 +1,13 @@
 import React, { Fragment, useState } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
+
+// Redux
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
 
 // Styles used for Material UI
 const useStyles = makeStyles(theme => ({
@@ -19,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Register = () => {
+const Register = props => {
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
@@ -116,4 +119,4 @@ const Register = () => {
   );
 };
 
-export default connect()(Register);
+export default connect(null, { setAlert })(Register);
