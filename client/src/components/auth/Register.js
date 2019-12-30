@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
+import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
@@ -118,6 +119,10 @@ const Register = ({ setAlert }) => {
       </p>
     </Fragment>
   );
+};
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
 };
 
 export default connect(null, { setAlert })(Register);
