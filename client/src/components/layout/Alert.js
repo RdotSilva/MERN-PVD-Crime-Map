@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 const Alert = ({ alerts }) =>
-  alerts !== null &&
+  // Temp change from null to undefined to prevent crash
+  alerts !== undefined &&
   alerts.length > 0 &&
   alerts.map(alert => (
     <div key={alert.id} className={`alert alert-${alert.alertType}`}>
