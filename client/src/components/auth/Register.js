@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -115,4 +116,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default connect()(Register);
