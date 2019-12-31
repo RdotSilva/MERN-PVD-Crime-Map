@@ -4,14 +4,10 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import PropTypes from "prop-types";
 
 // Redux
-import { connect } from "react-redux";
-import { setAlert } from "../../actions/alert";
-
-// Redux Hooks
 import { useDispatch } from "react-redux";
+import { setAlert } from "../../actions/alert";
 
 // Styles used for Material UI
 const useStyles = makeStyles(theme => ({
@@ -49,7 +45,6 @@ const Register = () => {
   const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
-      // setAlert("Passwords do not match", "danger");
       dispatch(setAlert("Passwords do not match!", "danger"));
     } else {
       console.log(formData);
@@ -126,9 +121,4 @@ const Register = () => {
   );
 };
 
-// Register.propTypes = {
-//   setAlert: PropTypes.func.isRequired
-// };
-
-// export default connect(null, { setAlert })(Register);
 export default Register;
