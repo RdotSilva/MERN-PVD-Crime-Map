@@ -8,6 +8,7 @@ import Icon from "@material-ui/core/Icon";
 // Redux
 import { useDispatch } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 
 // Styles used for Material UI
 const useStyles = makeStyles(theme => ({
@@ -22,7 +23,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// Destructure props to get actions
 const Register = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -47,7 +47,7 @@ const Register = () => {
     if (password !== password2) {
       dispatch(setAlert("Passwords do not match!", "danger"));
     } else {
-      console.log(formData);
+      dispatch(register({ name, email, password }));
     }
   };
 
