@@ -16,14 +16,17 @@ export const loadUser = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
 
+  console.log(`Load User Action called!`);
   try {
     const res = await axios.get("/api/v1/auth/me");
+    console.log(`Load User Action res.data = : ${res.data}`);
 
     dispatch({
       type: USER_LOADED,
       payload: res.data
     });
   } catch (error) {
+    console.log(`Load user error: ${error}`);
     dispatch({
       type: AUTH_ERROR
     });
@@ -78,6 +81,7 @@ export const login = (email, password) => async dispatch => {
       payload: res.data
     });
 
+    console.log(`Login success: dispatch loadUser() call`);
     dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
