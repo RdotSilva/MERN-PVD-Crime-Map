@@ -5,6 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { login } from "../../actions/auth";
+
 // Styles used for Material UI
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +40,7 @@ const Login = () => {
   // Check passwords match. Temporarily console log for testing. Later this will handle error properly.
   const onSubmit = e => {
     e.preventDefault();
-    console.log("LOGIN SUCCESS");
+    dispatch(login(email, password));
   };
 
   return (
