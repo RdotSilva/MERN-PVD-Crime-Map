@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Login = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
@@ -37,7 +38,6 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Check passwords match. Temporarily console log for testing. Later this will handle error properly.
   const onSubmit = e => {
     e.preventDefault();
     dispatch(login(email, password));
