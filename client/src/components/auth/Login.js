@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/auth";
 
 // Styles used for Material UI
@@ -24,6 +24,8 @@ const useStyles = makeStyles(theme => ({
 
 const Login = () => {
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
