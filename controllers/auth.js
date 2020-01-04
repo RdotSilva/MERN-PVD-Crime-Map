@@ -76,7 +76,6 @@ const sendTokenResponse = (user, statusCode, res) => {
 // @route   GET /api/v1/auth/me
 // @access  Private
 exports.getLoggedInUser = asyncHandler(async (req, res, next) => {
-  console.log(`getLoggedInUser req: ${req.user.id}`);
   const user = await User.findById(req.user.id);
 
   res.status(200).json({
