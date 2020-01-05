@@ -7,6 +7,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/auth";
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1
@@ -18,6 +22,11 @@ const useStyles = makeStyles({
 });
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const isLoading = useSelector(state => state.auth.isLoading);
+
   const classes = useStyles();
 
   return (
