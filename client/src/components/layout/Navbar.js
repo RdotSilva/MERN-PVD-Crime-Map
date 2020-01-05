@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,6 +29,21 @@ const Navbar = () => {
 
   const classes = useStyles();
 
+  const guestLinks = (
+    <Fragment>
+      <Button color="inherit">
+        <Link color="inherit" component={RouterLink} to="/register">
+          Register
+        </Link>
+      </Button>
+      <Button color="inherit">
+        <Link color="inherit" component={RouterLink} to="/login">
+          Login
+        </Link>
+      </Button>
+    </Fragment>
+  );
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -36,16 +51,6 @@ const Navbar = () => {
         <Typography variant="h6" className={classes.title}>
           Crime Map
         </Typography>
-        <Button color="inherit">
-          <Link color="inherit" component={RouterLink} to="/register">
-            Register
-          </Link>
-        </Button>
-        <Button color="inherit">
-          <Link color="inherit" component={RouterLink} to="/login">
-            Login
-          </Link>
-        </Button>
       </Toolbar>
     </AppBar>
   );
