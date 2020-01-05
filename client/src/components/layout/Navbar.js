@@ -29,6 +29,11 @@ const Navbar = () => {
 
   const classes = useStyles();
 
+  // Logout user with Redux action
+  const logoutUser = () => {
+    dispatch(logout());
+  };
+
   // Links to be shown if user is logged in
   const authLinks = (
     <Fragment>
