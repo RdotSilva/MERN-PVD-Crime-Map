@@ -3,6 +3,7 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
   USER_LOADED,
   AUTH_ERROR
 } from "./../actions/types";
