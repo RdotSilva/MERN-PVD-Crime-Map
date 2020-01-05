@@ -29,6 +29,16 @@ const Navbar = () => {
 
   const classes = useStyles();
 
+  // Links to be shown if user is logged in
+  const authLinks = (
+    <Fragment>
+      <Button onClick={() => logoutUser()} color="inherit">
+        Logout
+      </Button>
+    </Fragment>
+  );
+
+  // Links to be shown if user is not logged in
   const guestLinks = (
     <Fragment>
       <Button color="inherit">
@@ -51,6 +61,9 @@ const Navbar = () => {
         <Typography variant="h6" className={classes.title}>
           Crime Map
         </Typography>
+        {!isLoading && (
+          <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        )}
       </Toolbar>
     </AppBar>
   );
