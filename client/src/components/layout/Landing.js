@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-
+import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
@@ -83,14 +83,12 @@ const Landing = () => {
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
-                    Recent Crimes
+                    <Link color="inherit" component={RouterLink} to="/register">
+                      Register
+                    </Link>
                   </Button>
                 </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Crime Map
-                  </Button>
-                </Grid>
+                <Grid item></Grid>
               </Grid>
             </div>
           </Container>
