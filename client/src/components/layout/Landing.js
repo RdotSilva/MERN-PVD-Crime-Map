@@ -88,7 +88,13 @@ const Landing = () => {
                     </Link>
                   </Button>
                 </Grid>
-                <Grid item></Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    <Link color="inherit" component={RouterLink} to="/login">
+                      Login
+                    </Link>
+                  </Button>
+                </Grid>
               </Grid>
             </div>
           </Container>
