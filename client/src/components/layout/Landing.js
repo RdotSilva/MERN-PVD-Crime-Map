@@ -79,6 +79,18 @@ const Landing = () => {
             >
               Stay up to date with recent crimes committed in your neighborhood.
             </Typography>
+            <Typography
+              variant="subtitle2"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              Please register now to get full access to local crime data.
+              Registered users can see crimes recently committed in the City of
+              Providence. Registered users can add an address to their profile
+              or manually enter an address to view crimes committed in their
+              surrounding neighborhood.
+            </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
