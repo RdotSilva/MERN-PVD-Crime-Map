@@ -47,12 +47,23 @@ const Navbar = () => {
   const guestLinks = (
     <Fragment>
       <Button color="inherit">
-        <Link color="inherit" component={RouterLink} to="/register">
+        <Link
+          color="inherit"
+          style={{ textDecoration: "none" }}
+          component={RouterLink}
+          to="/register"
+        >
           Register
         </Link>
       </Button>
       <Button color="inherit">
-        <Link color="inherit" component={RouterLink} to="/login">
+        <Link
+          color="inherit"
+          style={{ textDecoration: "none" }}
+          className={classes.link}
+          component={RouterLink}
+          to="/login"
+        >
           Login
         </Link>
       </Button>
@@ -64,7 +75,14 @@ const Navbar = () => {
       <Toolbar>
         <i className="fas fa-map-pin"></i>
         <Typography variant="h6" className={classes.title}>
-          Crime Map
+          <Link
+            color="inherit"
+            style={{ textDecoration: "none" }}
+            component={RouterLink}
+            to="/dashboard"
+          >
+            Crime Map
+          </Link>
         </Typography>
         {!isLoading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
