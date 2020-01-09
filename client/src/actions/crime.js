@@ -2,12 +2,17 @@ import axios from "axios";
 
 import { FETCH_CRIMES } from "./types";
 
+// TODO: Temp cors fix for 'Access-Control-Allow-Origin' error.
+// Must use this url in front of the API url.
+const corsProxy = "https://cors-anywhere.herokuapp.com/";
+
 const crimeAPI = "https://data.providenceri.gov/resource/rz3y-pz8v.json";
 
 // Fetch crime data from external API
 export const fetchCrimeData = () => async dispatch => {
   try {
-    const res = await axios.get(crimeAPI);
+    const res = await axios.get(corsProxy + crimeAPI);
+    console.log(`fetchCrimeData try action fired off: ${res}`);
 
     // TODO: Double check res.data the data may come from a different endpoint
     dispatch({
@@ -15,6 +20,6 @@ export const fetchCrimeData = () => async dispatch => {
       payload: res.data
     });
   } catch (error) {
-    console.log(`CAUGHT ERROR in fetchCrimeData: ${error.response}`);
+    console.log(`CAUGHT ERROR in fetchCrimeData: ${error.message}`);
   }
 };
