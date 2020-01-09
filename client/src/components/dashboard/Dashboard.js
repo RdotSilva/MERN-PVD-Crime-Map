@@ -47,6 +47,10 @@ const useStyles = makeStyles(theme => ({
 const Dashboard = () => {
   const classes = useStyles();
 
+  // User data from auth state
+  const userData = useSelector(state => state.auth.user);
+  const userName = userData.data.name;
+
   return (
     <Fragment>
       <CssBaseline />
@@ -69,7 +73,7 @@ const Dashboard = () => {
               color="textSecondary"
               paragraph
             >
-              Stay up to date with recent crimes committed in your neighborhood.
+              Welcome {userName}
             </Typography>
             <Typography
               variant="subtitle2"
