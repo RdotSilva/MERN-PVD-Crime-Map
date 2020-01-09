@@ -13,6 +13,8 @@ import Copyright from "./../layout/Copyright";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const classes = useStyles();
+
   return (
     <Fragment>
       <CssBaseline />
@@ -47,6 +49,21 @@ const Dashboard = () => {
               Select "Crime Map" to see a map view of recent crimes in
               Providence.
             </Typography>
+            <div className={classes.heroButtons}>
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    <Link
+                      color="inherit"
+                      component={RouterLink}
+                      to="/crimelist"
+                    >
+                      Crime List
+                    </Link>
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
           </Container>
         </div>
       </main>
