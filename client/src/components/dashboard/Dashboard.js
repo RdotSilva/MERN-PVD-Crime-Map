@@ -62,6 +62,13 @@ const Dashboard = () => {
                     </Link>
                   </Button>
                 </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    <Link color="inherit" component={RouterLink} to="/crimemap">
+                      Crime Map
+                    </Link>
+                  </Button>
+                </Grid>
               </Grid>
             </div>
           </Container>
