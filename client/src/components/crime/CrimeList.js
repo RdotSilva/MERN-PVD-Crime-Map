@@ -18,7 +18,7 @@ const CrimeList = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        crimes.map(crime => <div>{crime.casenumber}</div>)
+        crimes.map((crime, index) => <div key={index}>{crime.casenumber}</div>)
       )}
     </Fragment>
   );
