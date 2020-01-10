@@ -13,6 +13,8 @@ const CrimeList = () => {
     dispatch(fetchCrimeData());
   }, [dispatch]);
 
+  // TODO: For now return casenumber to demo.
+  // In future create a card and return the card with the data.
   return (
     <Fragment>
       {isLoading ? (
