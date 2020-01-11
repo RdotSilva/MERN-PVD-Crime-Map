@@ -34,6 +34,9 @@ const CrimeCard = ({ crime }) => {
         <Typography variant="h5" component="h2">
           {crime.reported_date}
         </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+          Statute: {crime.statute_code}
+        </Typography>
       </CardContent>
     </Card>
   );
