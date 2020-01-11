@@ -8,12 +8,8 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+    minWidth: 275,
+    backgroundColor: "beige"
   },
   title: {
     fontSize: 14
@@ -24,7 +20,20 @@ const useStyles = makeStyles({
 });
 
 const CrimeCard = ({ crime }) => {
-  return <div></div>;
+  const classes = useStyles();
+  return (
+    <Card className={classes.card} variant="outlined">
+      <CardContent>
+        <Typography
+          className={classes.title}
+          color="textSecondary"
+          gutterBottom
+        >
+          {crime.offense_desc}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
 };
 
 export default CrimeCard;
