@@ -4,6 +4,8 @@ Full stack web application that allows users to search their neighborhood and fi
 
 Users can search by radius to their home address or enter a custom address to see crimes within that area.
 
+Users must register and login to view crime data.
+
 ### Prerequisites
 
 You must create a config file with your environment variables.
