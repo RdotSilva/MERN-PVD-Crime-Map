@@ -37,6 +37,12 @@ const CrimeCard = ({ crime }) => {
         <Typography className={classes.pos} color="textSecondary">
           Statute: {crime.statute_code}
         </Typography>
+        <Typography variant="body2" component="p">
+          Address
+          <br />
+          <Button size="small">{crime.location}</Button>
+        </Typography>
+        <Typography color="textSecondary">Case: {crime.casenumber}</Typography>
       </CardContent>
     </Card>
   );
