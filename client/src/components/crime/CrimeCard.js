@@ -31,6 +31,9 @@ const CrimeCard = ({ crime }) => {
         >
           {crime.offense_desc}
         </Typography>
+        <Typography variant="h5" component="h2">
+          {crime.reported_date}
+        </Typography>
       </CardContent>
     </Card>
   );
