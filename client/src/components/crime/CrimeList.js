@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import CrimeCard from "./CrimeCard";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +21,9 @@ const CrimeList = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        crimes.map((crime, index) => <div key={index}>{crime.casenumber}</div>)
+        crimes.map((crime, index) => (
+          <CrimeCard key={index} crime={crime}></CrimeCard>
+        ))
       )}
     </Fragment>
   );
