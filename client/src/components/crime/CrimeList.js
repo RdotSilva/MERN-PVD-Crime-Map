@@ -8,7 +8,19 @@ import Grid from "@material-ui/core/Grid";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCrimeData } from "./../../actions/crime";
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
+  }
+}));
+
 const CrimeList = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.crime.loading);
   const crimes = useSelector(state => state.crime.crimes);
