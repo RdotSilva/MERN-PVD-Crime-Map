@@ -1,5 +1,8 @@
 import React, { Fragment, useEffect } from "react";
 import CrimeCard from "./CrimeCard";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -14,18 +17,25 @@ const CrimeList = () => {
     dispatch(fetchCrimeData());
   }, [dispatch]);
 
-  // TODO: For now return casenumber to demo.
-  // In future create a card and return the card with the data.
   return (
-    <Fragment>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        crimes.map((crime, index) => (
-          <CrimeCard key={index} crime={crime}></CrimeCard>
-        ))
-      )}
-    </Fragment>
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        {" "}
+        <Fragment>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            crimes.map((crime, index) => (
+              <Grid item xs={3}>
+                <Paper className={classes.paper}>
+                  <CrimeCard key={index} crime={crime}></CrimeCard>
+                </Paper>
+              </Grid>
+            ))
+          )}
+        </Fragment>
+      </Grid>
+    </div>
   );
 };
 
