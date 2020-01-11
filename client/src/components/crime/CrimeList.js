@@ -29,6 +29,7 @@ const CrimeList = () => {
     dispatch(fetchCrimeData());
   }, [dispatch]);
 
+  // TODO: Update grid spacing for crime cards
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
