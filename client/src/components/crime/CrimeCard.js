@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Moment from "react-moment";
 
 const useStyles = makeStyles({
   card: {
@@ -32,10 +33,13 @@ const CrimeCard = ({ crime }) => {
           {crime.offense_desc}
         </Typography>
         <Typography variant="h5" component="h2">
-          {crime.reported_date}
+          <Moment format={"YYYY-MM-DD HH:mm A"}>{crime.reported_date}</Moment>
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           Statute: {crime.statute_code}
+        </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+          {crime.statute_desc}
         </Typography>
         <Typography variant="body2" component="p">
           Address
