@@ -20,6 +20,9 @@ const useStyles = makeStyles({
   }
 });
 
+// TODO: Update styling for crime card
+// Add clickable link for address to google maps
+
 const CrimeCard = ({ crime }) => {
   const classes = useStyles();
   return (
