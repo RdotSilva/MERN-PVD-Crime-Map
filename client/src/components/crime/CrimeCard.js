@@ -47,7 +47,14 @@ const CrimeCard = ({ crime }) => {
         <Typography variant="body2" component="p">
           Address
           <br />
-          <Button size="small">{crime.location}</Button>
+          <Button size="small">
+            <a
+              href={`https://www.google.com/maps/place/${crime.location},+Providence,+RI`}
+              target="_blank"
+            >
+              {crime.location}
+            </a>
+          </Button>
         </Typography>
         <Typography color="textSecondary">Case: {crime.casenumber}</Typography>
       </CardContent>
