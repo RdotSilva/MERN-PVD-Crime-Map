@@ -72,7 +72,7 @@ const Register = () => {
         autoComplete="off"
         onSubmit={e => onSubmit(e)}
       >
-        <div>
+        <div className={classes.center}>
           <TextField
             id="outlined-name"
             label="Name"
@@ -83,7 +83,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className={classes.center}>
           <TextField
             id="outlined-name"
             label="Email"
@@ -94,41 +94,45 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className={classes.center}>
           <TextField
             id="outlined-name"
             label="Password"
             name="password"
+            type="password"
             value={password}
             onChange={handleChange}
             variant="outlined"
             required
           />
         </div>
-        <div>
+        <div className={classes.center}>
           <TextField
             id="outlined-name"
             label="Confirm Password"
             name="password2"
+            type="password"
             value={password2}
             onChange={handleChange}
             variant="outlined"
             required
           />
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          endIcon={<Icon>send</Icon>}
-          type="submit"
-        >
-          Send
-        </Button>
+        <div className={classes.center}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            endIcon={<Icon>send</Icon>}
+            type="submit"
+          >
+            Send
+          </Button>
+        </div>
       </form>
-      <p>
+      <p className={classes.login}>
         Already have an account?
-        <Link to="/login">Login</Link>
+        <Link to="/login"> Login</Link>
       </p>
     </Fragment>
   );
