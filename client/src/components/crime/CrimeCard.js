@@ -36,7 +36,7 @@ const CrimeCard = ({ crime }) => {
           {crime.offense_desc}
         </Typography>
         <Typography variant="h5" component="h2">
-          <Moment format={"YYYY-MM-DD HH:mm A"}>{crime.reported_date}</Moment>
+          <Moment format={"MM-DD-YYYY HH:mm A"}>{crime.reported_date}</Moment>
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           Statute: {crime.statute_code}
