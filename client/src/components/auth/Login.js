@@ -19,6 +19,9 @@ const useStyles = makeStyles(theme => ({
     button: {
       margin: theme.spacing(1)
     }
+  },
+  center: {
+    textAlign: "center"
   }
 }));
 
@@ -58,7 +61,7 @@ const Login = () => {
         autoComplete="off"
         onSubmit={e => onSubmit(e)}
       >
-        <div>
+        <div className={classes.center}>
           <TextField
             id="outlined-name"
             label="Email"
@@ -69,9 +72,10 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className={classes.center}>
           <TextField
             id="outlined-name"
+            type="password"
             label="Password"
             name="password"
             value={password}
@@ -80,19 +84,21 @@ const Login = () => {
             required
           />
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          endIcon={<Icon>send</Icon>}
-          type="submit"
-        >
-          Login
-        </Button>
+        <div className={classes.center}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            endIcon={<Icon>send</Icon>}
+            type="submit"
+          >
+            Login
+          </Button>
+        </div>
       </form>
-      <p>
+      <p className={classes.signUp}>
         Don't have an account?
-        <Link to="/register">Sign Up</Link>
+        <Link to="/register"> Sign Up</Link>
       </p>
     </Fragment>
   );
