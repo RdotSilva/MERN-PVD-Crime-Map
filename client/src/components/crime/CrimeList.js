@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
+    wrap: "wrap",
     color: theme.palette.text.secondary
   }
 }));
@@ -39,7 +40,7 @@ const CrimeList = () => {
             <div>Loading...</div>
           ) : (
             crimes.map((crime, index) => (
-              <Grid item xs={3}>
+              <Grid item lg={3}>
                 <Paper className={classes.paper}>
                   <CrimeCard key={index} crime={crime}></CrimeCard>
                 </Paper>
