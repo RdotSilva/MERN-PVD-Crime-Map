@@ -23,6 +23,10 @@ const useStyles = makeStyles(theme => ({
   },
   center: {
     textAlign: "center"
+  },
+  login: {
+    textAlign: "center",
+    padding: "10px"
   }
 }));
 
