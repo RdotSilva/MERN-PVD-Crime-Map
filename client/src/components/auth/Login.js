@@ -22,6 +22,10 @@ const useStyles = makeStyles(theme => ({
   },
   center: {
     textAlign: "center"
+  },
+  signUp: {
+    textAlign: "center",
+    padding: "10px"
   }
 }));
 
