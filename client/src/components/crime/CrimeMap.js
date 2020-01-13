@@ -12,7 +12,11 @@ const CrimeMap = () => {
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
   })
 
- 
+  const renderMap = () => {
+    const onLoad = React.useCallback(
+      function onLoad (mapInstance) {
+      }
+    )
 
   return ()
     
