@@ -1,25 +1,28 @@
-import React from "react";
-import { GoogleMap, useLoadScript } from '@react-google-maps/api'
+import React, { Fragment } from "react";
+import { LoadScript, GoogleMap } from "@react-google-maps/api";
 
-const options = {
-  zoomControlOptions: {
-    position: google.maps.ControlPosition.RIGHT_CENTER
-  }
-}
+const google = window.google;
 
 const CrimeMap = () => {
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
-  })
-
-  const renderMap = () => {
-    const onLoad = React.useCallback(
-      function onLoad (mapInstance) {
-      }
-    )
-
-  return ()
-    
+  return (
+    <LoadScript
+      id="script-loader"
+      googleMapsApiKey="AIzaSyD0qbt_voTTHNHL8bmo9GLFPyvKxAhehec"
+    >
+      <GoogleMap
+        id="test"
+        mapContainerStyle={{
+          height: "1400px",
+          width: "1800px"
+        }}
+        zoom={15}
+        center={{
+          lat: 41.824,
+          lng: -71.4128
+        }}
+      ></GoogleMap>
+    </LoadScript>
+  );
 };
 
 export default CrimeMap;
