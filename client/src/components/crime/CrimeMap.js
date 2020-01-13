@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
-import { LoadScript, GoogleMap } from "@react-google-maps/api";
+import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 
 const google = window.google;
+
+const position = {
+  lat: 41.824,
+  lng: -71.4128
+};
 
 const CrimeMap = () => {
   return (
@@ -20,7 +25,9 @@ const CrimeMap = () => {
           lat: 41.824,
           lng: -71.4128
         }}
-      ></GoogleMap>
+      >
+        <Marker position={position}></Marker>
+      </GoogleMap>
     </LoadScript>
   );
 };
