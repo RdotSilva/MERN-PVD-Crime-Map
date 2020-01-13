@@ -8,7 +8,11 @@ const options = {
 }
 
 const CrimeMap = () => {
-  
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
+  })
+
+ 
 
   return ()
     
