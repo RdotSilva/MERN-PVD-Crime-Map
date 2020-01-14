@@ -25,6 +25,18 @@ const UserSchema = new mongoose.Schema({
   address: {
     type: String
   },
+  location: {
+    // GeoJSON Point. Use these coordinates to plot user location on map.
+    type: {
+      type: String,
+      enum: ["Point"]
+    },
+    coordinates: {
+      type: [Number],
+      index: "2dsphere"
+    },
+    formattedAddress: String
+  },
   createdAt: {
     type: Date,
     default: Date.now
