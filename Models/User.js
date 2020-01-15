@@ -23,21 +23,6 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false
   },
-  address: {
-    type: String
-  },
-  location: {
-    // GeoJSON Point. Use these coordinates to plot user location on map.
-    type: {
-      type: String,
-      enum: ["Point"]
-    },
-    coordinates: {
-      type: [Number],
-      index: "2dsphere"
-    },
-    formattedAddress: String
-  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -65,19 +50,5 @@ UserSchema.methods.getSignedJwtToken = function() {
 UserSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
-
-// Geocode and create location field
-UserSchema.pre("save", async function(next) {
-  const loc = await geocoder.geocode(this.address);
-  this.location = {
-    type: "Point",
-    coordinates: [loc[0].longitude, loc[0].latitude],
-    formattedAddress: loc[0].formattedAddress
-  };
-
-  // Do not store address in DB
-  this.address = undefined;
-  next();
-});
 
 module.exports = mongoose.model("User", UserSchema);
