@@ -6,9 +6,7 @@ const ErrorResponse = require("../utils/errorResponse");
 // @route   GET /api/v1/profile/me
 // @access  Private
 exports.getLoggedInUserProfile = asyncHandler(async (req, res, next) => {
-  const profile = await (
-    await Profile.findOne({ user: req.user.id })
-  ).populate("user", ["name"]);
+  const profile = await await Profile.findOne({ user: req.user.id });
 
   if (!profile) {
     return next(new ErrorResponse("No profile data found", 400));
