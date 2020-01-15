@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const geocoder = require("../utils/geocoder");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -64,5 +65,19 @@ UserSchema.methods.getSignedJwtToken = function() {
 UserSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
+
+// Geocode and create location field
+UserSchema.pre("save", async function(next) {
+  const loc = await geocoder.geocode(this.address);
+  this.location = {
+    type: "Point",
+    coordinates: [loc[0].longitude, loc[0].latitude],
+    formattedAddress: loc[0].formattedAddress
+  };
+
+  // Do not store address in DB
+  this.address = undefined;
+  next();
+});
 
 module.exports = mongoose.model("User", UserSchema);
