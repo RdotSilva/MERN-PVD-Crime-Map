@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const geocoder = require("../utils/geocoder");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -51,4 +50,4 @@ UserSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = User = mongoose.model("User", UserSchema);
