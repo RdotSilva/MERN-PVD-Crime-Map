@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const geocoder = require("../utils/geocoder");
 
 const ProfileSchema = new mongoose.Schema({
   user: {
