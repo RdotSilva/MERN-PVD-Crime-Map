@@ -11,6 +11,6 @@ const { protect } = require("../middleware/auth");
 
 router.get("/me", protect, getLoggedInUserProfile);
 router.post("/", protect, createdOrUpdateUserProfile);
-router.delete("/", deleteUserProfile);
+router.delete("/", protect, deleteUserProfile);
 
 module.exports = router;
