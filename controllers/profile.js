@@ -41,3 +41,15 @@ exports.createdOrUpdateUserProfile = asyncHandler(async (req, res, next) => {
     data: profile
   });
 });
+
+// @desc     Delete user profile
+// @route    DELETE/api/v1/profile
+// @access   Private
+exports.deleteUserProfile = asyncHandler(async (req, res, next) => {
+  await Profile.findOneAndRemove({ user: req.user.id });
+
+  res.status(200).json({
+    success: true,
+    msg: "User Profile deleted"
+  });
+});
