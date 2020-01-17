@@ -8,6 +8,7 @@ import Icon from "@material-ui/core/Icon";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/auth";
+import { getCurrentUserProfile } from "./../../actions/profile";
 
 // Styles used for Material UI
 const useStyles = makeStyles(theme => ({
@@ -54,6 +55,7 @@ const Login = () => {
 
   // Redirect if user is logged in
   if (isAuthenticated) {
+    dispatch(getCurrentUserProfile());
     return <Redirect to="/dashboard" />;
   }
 
