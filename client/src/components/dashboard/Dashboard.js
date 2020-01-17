@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,7 +10,8 @@ import Link from "@material-ui/core/Link";
 import Copyright from "./../layout/Copyright";
 
 // Redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUserProfile } from "./../../actions/profile";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -46,12 +47,15 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  // User data from auth state
-  const userData = useSelector(state => state.auth.user);
-  const userName = userData.data.name;
+  // User Profile data from profile state
+  const isLoading = useSelector(state => state.profile.loading);
+  const profile = useSelector(state => state.profile.profile);
 
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <Fragment>
       <CssBaseline />
       <main>
@@ -73,7 +77,7 @@ const Dashboard = () => {
               color="textSecondary"
               paragraph
             >
-              Welcome {userName}
+              Welcome {profile.data.user.name}
             </Typography>
             <Typography
               variant="subtitle2"
