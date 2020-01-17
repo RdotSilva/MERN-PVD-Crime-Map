@@ -13,3 +13,8 @@ export const AUTH_ERROR = "AUTH_ERROR";
 
 // Crime actions
 export const FETCH_CRIMES = "FETCH_CRIMES";
+
+// Profile actions
+export const GET_PROFILE = "GET_PROFILE";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
+export const CLEAR_PROFILE = "CLEAR_PROFILE";
