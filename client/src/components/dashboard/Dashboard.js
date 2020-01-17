@@ -53,6 +53,10 @@ const Dashboard = () => {
   const isLoading = useSelector(state => state.profile.loading);
   const profile = useSelector(state => state.profile.profile);
 
+  useEffect(() => {
+    dispatch(getCurrentUserProfile());
+  }, [dispatch]);
+
   return isLoading ? (
     <div>Loading...</div>
   ) : (
