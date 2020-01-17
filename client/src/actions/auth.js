@@ -16,11 +16,8 @@ export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-
-  console.log(`Load User Action called!`);
   try {
     const res = await axios.get("/api/v1/auth/me");
-    console.log(`Load User Action res.data = : ${res.data}`);
 
     dispatch({
       type: USER_LOADED,
