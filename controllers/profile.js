@@ -6,7 +6,7 @@ const ErrorResponse = require("../utils/errorResponse");
 // @route   GET /api/v1/profile/me
 // @access  Private
 exports.getLoggedInUserProfile = asyncHandler(async (req, res, next) => {
-  const profile = await await Profile.findOne({
+  const profile = await Profile.findOne({
     user: req.user.id
   }).populate("user", ["name"]);
 
@@ -31,12 +31,22 @@ exports.createdOrUpdateUserProfile = asyncHandler(async (req, res, next) => {
   profileFields.user = req.user.id;
   if (address) profileFields.address = address;
 
-  // Using upsert option (creates new doc if no match is found):
-  let profile = await Profile.findOneAndUpdate(
-    { user: req.user.id },
-    { $set: profileFields },
-    { new: true, upsert: true }
-  );
+  let profile = await Profile.findOne({ user: req.user.id });
+
+  // If a profile already exists, update the current profile.
+  if (profile) {
+    profile = await Profile.findOneAndUpdate(
+      {
+        user: req.user.id
+      },
+      { $set: profileFields },
+      { new: true }
+    );
+  }
+
+  // Create new profile if no profile exists
+  profile = new Profile(profileFields);
+  await profile.save();
 
   res.status(200).json({
     success: true,
