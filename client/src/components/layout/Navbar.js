@@ -27,6 +27,10 @@ const Navbar = () => {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const isLoading = useSelector(state => state.auth.isLoading);
 
+  // User Profile data from profile state
+  const profileLoading = useSelector(state => state.profile.loading);
+  const profile = useSelector(state => state.profile.profile);
+
   const classes = useStyles();
 
   // Logout user with Redux action
@@ -85,7 +89,10 @@ const Navbar = () => {
           </Link>
         </Typography>
         {!isLoading && (
-          <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+          <Fragment>
+            {profile !== null ? editProfileLink : null}
+            {isAuthenticated ? authLinks : guestLinks}
+          </Fragment>
         )}
       </Toolbar>
     </AppBar>
