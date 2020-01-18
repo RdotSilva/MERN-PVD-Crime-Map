@@ -7,7 +7,10 @@ import Icon from "@material-ui/core/Icon";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentUserProfile } from "./../../actions/profile";
+import {
+  getCurrentUserProfile,
+  createUserProfile
+} from "./../../actions/profile";
 
 // Styles used for Material UI
 const useStyles = makeStyles(theme => ({
@@ -56,7 +59,24 @@ const CreateProfile = () => {
     <Redirect to="/dashboard" />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Create Your Profile</h1>
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={e => onSubmit(e)}
+      >
+        <div className={classes.center}>
+          <TextField
+            id="outlined-name"
+            label="Address"
+            name="address"
+            value={address}
+            onChange={handleChange}
+            variant="outlined"
+            required
+          />
+        </div>
+      </form>
     </Fragment>
   );
 };
