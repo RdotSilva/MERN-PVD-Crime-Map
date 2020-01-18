@@ -11,6 +11,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import CrimeList from "./components/crime/CrimeList";
 import CrimeMap from "./components/crime/CrimeMap";
+import CreateProfile from "./components/profile/CreateProfile";
 
 // Redux
 import { Provider } from "react-redux";
@@ -22,9 +23,10 @@ if (localStorage.token) {
 }
 
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+  // TODO: Comment this out for now to avoid login error.
+  // useEffect(() => {
+  //   store.dispatch(loadUser());
+  // }, []);
 
   return (
     <Provider store={store}>
@@ -39,6 +41,11 @@ const App = () => {
             <PrivateRoute exact path="/crimelist" component={CrimeList} />
             <PrivateRoute exact path="/crimemap" component={CrimeMap} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute
+              exact
+              path="/createprofile"
+              component={CreateProfile}
+            />
           </Switch>
         </Fragment>
       </Router>
