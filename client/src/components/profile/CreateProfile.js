@@ -19,7 +19,13 @@ const CreateProfile = () => {
     dispatch(getCurrentUserProfile());
   }, [dispatch]);
 
-  return <div></div>;
+  return isLoading && profile === null ? (
+    <Redirect to="/dashboard" />
+  ) : (
+    <Fragment>
+      <h1 className="large text-primary">Create Your Profile</h1>
+    </Fragment>
+  );
 };
 
 export default CreateProfile;
