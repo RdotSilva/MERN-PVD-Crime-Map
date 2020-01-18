@@ -24,9 +24,9 @@ if (localStorage.token) {
 
 const App = () => {
   // TODO: Comment this out for now to avoid login error.
-  // useEffect(() => {
-  //   store.dispatch(loadUser());
-  // }, []);
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
 
   return (
     <Provider store={store}>
