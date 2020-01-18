@@ -82,6 +82,17 @@ const CreateProfile = () => {
             required
           />
         </div>
+        <div className={classes.center}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            endIcon={<Icon>update</Icon>}
+            type="submit"
+          >
+            Create Profile
+          </Button>
+        </div>
       </form>
     </Fragment>
   );
