@@ -1,10 +1,13 @@
 import React, { useEffect, useState, Fragment } from "react";
+import { Link, withRouter, Redirect } from "react-router-dom";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserProfile } from "./../../actions/profile";
 
 const CreateProfile = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     address: ""
   });
