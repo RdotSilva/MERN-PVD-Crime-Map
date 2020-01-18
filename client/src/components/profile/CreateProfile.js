@@ -15,6 +15,10 @@ const CreateProfile = () => {
 
   const { address } = formData;
 
+  useEffect(() => {
+    dispatch(getCurrentUserProfile());
+  }, [dispatch]);
+
   return <div></div>;
 };
 
