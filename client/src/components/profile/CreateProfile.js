@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 const CreateProfile = () => {
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const [formData, setFormData] = useState({
     address: ""
@@ -41,6 +42,11 @@ const CreateProfile = () => {
   const profile = useSelector(state => state.profile.profile);
 
   const { address } = formData;
+
+  // Handle input change for text fields using [e.target.name] to select the unique name for each text field.
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     dispatch(getCurrentUserProfile());
