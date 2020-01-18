@@ -65,57 +65,100 @@ const Dashboard = () => {
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              PVD Crime Map
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Welcome {profile.data.user.name}
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Select "Crime List" to view a list of recent crimes in Providence.
-              Select "Crime Map" to see a map view of recent crimes in
-              Providence.
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button variant="contained" color="primary">
-                    <Link
-                      color="inherit"
-                      component={RouterLink}
-                      to="/crimelist"
-                    >
-                      Crime List
-                    </Link>
-                  </Button>
+          {profile !== null ? (
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                PVD Crime Map
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                Welcome {profile.data.user.name}
+              </Typography>
+              <Typography
+                variant="subtitle2"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                Select "Crime List" to view a list of recent crimes in
+                Providence. Select "Crime Map" to see a map view of recent
+                crimes in Providence.
+              </Typography>
+              <div className={classes.heroButtons}>
+                <Grid container spacing={2} justify="center">
+                  <Grid item>
+                    <Button variant="contained" color="primary">
+                      <Link
+                        color="inherit"
+                        component={RouterLink}
+                        to="/crimelist"
+                      >
+                        Crime List
+                      </Link>
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined" color="primary">
+                      <Link
+                        color="inherit"
+                        component={RouterLink}
+                        to="/crimemap"
+                      >
+                        Crime Map
+                      </Link>
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    <Link color="inherit" component={RouterLink} to="/crimemap">
-                      Crime Map
-                    </Link>
-                  </Button>
+              </div>
+            </Container>
+          ) : (
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                PVD Crime Map
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                Please create a profile to access the local Crime Map for your
+                neighborhood.
+              </Typography>
+
+              <div className={classes.heroButtons}>
+                <Grid container spacing={2} justify="center">
+                  <Grid item>
+                    <Button variant="contained" color="primary">
+                      <Link
+                        color="inherit"
+                        component={RouterLink}
+                        to="/createprofile"
+                      >
+                        Create Profile
+                      </Link>
+                    </Button>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </div>
-          </Container>
+              </div>
+            </Container>
+          )}
         </div>
       </main>
       <footer className={classes.footer}>
