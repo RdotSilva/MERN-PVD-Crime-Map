@@ -51,6 +51,7 @@ const Login = () => {
   const onSubmit = e => {
     e.preventDefault();
     dispatch(login(email, password));
+    dispatch(getCurrentUserProfile);
   };
 
   // Redirect if user is logged in
