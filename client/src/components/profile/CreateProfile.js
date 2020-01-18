@@ -57,11 +57,10 @@ const CreateProfile = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log("PROFILE SUBMITTED");
-    // dispatch(updateUserProfile(address));
+    dispatch(createUserProfile(formData));
   };
 
-  return isLoading && profile === null ? (
+  return profile !== null ? (
     <Redirect to="/dashboard" />
   ) : (
     <Fragment>
