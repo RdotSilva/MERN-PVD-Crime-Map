@@ -74,6 +74,22 @@ const Navbar = () => {
     </Fragment>
   );
 
+  const editProfileLink = (
+    <Fragment>
+      <Button color="inherit">
+        <Link
+          color="inherit"
+          style={{ textDecoration: "none" }}
+          className={classes.link}
+          component={RouterLink}
+          to="/editprofile"
+        >
+          Edit Profile
+        </Link>
+      </Button>
+    </Fragment>
+  );
+
   return (
     <AppBar position="static">
       <Toolbar>
