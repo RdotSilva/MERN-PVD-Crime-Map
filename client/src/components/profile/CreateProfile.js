@@ -55,6 +55,12 @@ const CreateProfile = () => {
     dispatch(getCurrentUserProfile());
   }, [dispatch]);
 
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log("PROFILE SUBMITTED");
+    // dispatch(updateUserProfile(address));
+  };
+
   return isLoading && profile === null ? (
     <Redirect to="/dashboard" />
   ) : (
