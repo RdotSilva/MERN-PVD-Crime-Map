@@ -25,8 +25,8 @@ const CrimeMap = () => {
         <GoogleMap
           id="crime-map"
           mapContainerStyle={{
-            height: "1400px",
-            width: "1800px"
+            height: "900px",
+            width: "1900px"
           }}
           zoom={15}
           center={position}
