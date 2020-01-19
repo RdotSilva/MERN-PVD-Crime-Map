@@ -1,30 +1,28 @@
 import React, { Fragment } from "react";
 import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 
-const google = window.google;
+// Redux
+import { useDispatch, useSelector } from "react-redux";
 
-const position = {
-  lat: 41.824,
-  lng: -71.4128
-};
+const google = window.google;
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const CrimeMap = () => {
+  // User Profile data from profile state
+  const profile = useSelector(state => state.profile.profile);
+
   return (
     <Fragment>
       <LoadScript id="script-loader" googleMapsApiKey={apiKey}>
         <GoogleMap
-          id="test"
+          id="crime-map"
           mapContainerStyle={{
             height: "1400px",
             width: "1800px"
           }}
           zoom={15}
-          center={{
-            lat: 41.824,
-            lng: -71.4128
-          }}
+          center={position}
         >
           <Marker position={position}></Marker>
         </GoogleMap>
