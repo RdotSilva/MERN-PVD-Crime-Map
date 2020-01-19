@@ -31,7 +31,7 @@ const CrimeMap = () => {
           zoom={15}
           center={position}
         >
-          <Marker position={position}></Marker>
+          <Marker position={position} title="Home"></Marker>
         </GoogleMap>
       </LoadScript>
     </Fragment>
