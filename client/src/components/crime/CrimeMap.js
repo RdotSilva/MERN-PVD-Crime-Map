@@ -12,6 +12,13 @@ const CrimeMap = () => {
   // User Profile data from profile state
   const profile = useSelector(state => state.profile.profile);
 
+  // User Home Position set in profile data
+  // Also use this to center map
+  const position = {
+    lat: profile.data.location.coordinates[1],
+    lng: profile.data.location.coordinates[0]
+  };
+
   return (
     <Fragment>
       <LoadScript id="script-loader" googleMapsApiKey={apiKey}>
