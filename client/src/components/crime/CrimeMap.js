@@ -24,6 +24,11 @@ const CrimeMap = () => {
     lng: profile.data.location.coordinates[0]
   };
 
+  useEffect(() => {
+    dispatch(fetchCrimeData());
+  }, [dispatch]);
+
+
   return (
     <Fragment>
       {isLoading ? (
@@ -40,6 +45,7 @@ const CrimeMap = () => {
             center={position}
           >
             <Marker position={position} title="Home"></Marker>
+           
           </GoogleMap>
         </LoadScript>
       )}
