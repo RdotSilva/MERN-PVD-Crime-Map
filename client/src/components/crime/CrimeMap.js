@@ -28,6 +28,18 @@ const CrimeMap = () => {
     dispatch(fetchCrimeData());
   }, [dispatch]);
 
+  const geocodeCrime = async crime => {
+    // TODO: Add react geocoder and update this
+    const loc = await geocoder.geocode(crime.location);
+
+    const location = {
+      type: "Point",
+      coordinates: [loc[0].longitude, loc[0].latitude],
+      formattedAddress: loc[0].formattedAddress
+    };
+
+    return <Marker position={location.coordinates}></Marker>;
+  };
 
   return (
     <Fragment>
@@ -45,7 +57,6 @@ const CrimeMap = () => {
             center={position}
           >
             <Marker position={position} title="Home"></Marker>
-           
           </GoogleMap>
         </LoadScript>
       )}
