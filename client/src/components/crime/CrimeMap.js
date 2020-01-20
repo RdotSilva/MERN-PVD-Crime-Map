@@ -57,6 +57,7 @@ const CrimeMap = () => {
             center={position}
           >
             <Marker position={position} title="Home"></Marker>
+            {crimes.map(crime => geocodeCrime(crime))}
           </GoogleMap>
         </LoadScript>
       )}
