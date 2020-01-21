@@ -45,24 +45,21 @@ const CrimeMap = () => {
     lng: profile.data.location.coordinates[0]
   };
 
-  useEffect(() => {
-    dispatch(fetchCrimeData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   geocodeCrimes(crimes);
+  // }, [);
 
-  const geocodeCrimes = async crimes => {
-    crimes.forEach(async crime => {
-      const location = await Geocode.fromAddress(
-        crime.location + " Providence, RI"
-      );
-
-      setLocationArray([
-        ...locationArray,
-        location.results[0].geometry.location
-      ]);
-
-      console.log(
-        `Location array updated with: ${location.results[0].geometry.location}`
-      );
+  const geocodeCrimes = crimes => {
+    crimes.map(crime => {
+      Geocode.fromAddress(crime.location + "Providence, RI").then(loc => {
+        setLocationArray([
+          ...locationArray,
+          {
+            lat: loc.results[0].geometry.location.lat,
+            lng: loc.results[0].geometry.location.lng
+          }
+        ]);
+      });
     });
   };
 
@@ -73,7 +70,9 @@ const CrimeMap = () => {
       ) : (
         <LoadScript id="script-loader" googleMapsApiKey={apiKey}>
           <div>
-            <button onClick={() => geocodeCrimes(crimes)}>Cool</button>
+            <button onClick={() => geocodeCrimes(crimes)}>
+              GEOCODE CRIMES
+            </button>
           </div>
           <GoogleMap
             id="crime-map"
