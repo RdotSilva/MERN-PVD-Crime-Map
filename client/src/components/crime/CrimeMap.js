@@ -7,14 +7,15 @@ import {
   MarkerClusterer
 } from "@react-google-maps/api";
 
-//GEOCODE
+// Geocode package to make geocoding easier.
 import Geocode from "react-geocode";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCrimeData } from "./../../actions/crime";
 
+// Add this to prevent "google not found" error.
 const google = window.google;
+
 const apiKey = process.env.REACT_APP_API_KEY;
 
 // GEOCODE SETTINGS
@@ -23,8 +24,6 @@ Geocode.enableDebug();
 
 const CrimeMap = () => {
   const [locationArray, setLocationArray] = useState([]);
-
-  const dispatch = useDispatch();
 
   // User Profile data from profile state
   const profile = useSelector(state => state.profile.profile);
@@ -40,6 +39,9 @@ const CrimeMap = () => {
     lng: profile.data.location.coordinates[0]
   };
 
+  // Take the array of crimes from Redux state, map through the crimes and create a geolocation coordinate
+  // for each crime. Add this coordinate to locationArray state. This array will be used to plot a marker
+  // cluster on the map.
   const geocodeCrimes = crimes => {
     crimes.map(crime => {
       Geocode.fromAddress(crime.location + "Providence, RI").then(loc => {
