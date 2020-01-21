@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
   LoadScript,
   GoogleMap,
@@ -21,6 +21,10 @@ Geocode.setApiKey(apiKey);
 Geocode.enableDebug();
 
 const CrimeMap = () => {
+  const [crimeData, setCrimeData] = useState({
+    locations: []
+  });
+
   const dispatch = useDispatch();
 
   // User Profile data from profile state
