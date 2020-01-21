@@ -25,6 +25,11 @@ const CrimeMap = () => {
     locations: []
   });
 
+  // On component mount run Geocode method to update location state for all crimes.
+  useEffect(() => {
+    geocodeCrimes();
+  }, geocodeCrime);
+
   const dispatch = useDispatch();
 
   // User Profile data from profile state
