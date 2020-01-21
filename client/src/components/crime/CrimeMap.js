@@ -41,6 +41,13 @@ const CrimeMap = () => {
     dispatch(fetchCrimeData());
   }, [dispatch]);
 
+  const geocodeCrime = async crime => {
+    const loc = await Geocode.fromAddress(crime.location + " Providence, RI");
+
+    // Lat/lng object
+    return loc.results[0].geometry.location;
+  };
+
   return (
     <Fragment>
       {isLoading ? (
