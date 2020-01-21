@@ -24,11 +24,6 @@ Geocode.enableDebug();
 const CrimeMap = () => {
   const [locationArray, setLocationArray] = useState([]);
 
-  // On component mount run Geocode method to update location state for all crimes.
-  // useEffect(() => {
-  //   geocodeCrimes();
-  // }, geocodeCrime);
-
   const dispatch = useDispatch();
 
   // User Profile data from profile state
@@ -44,10 +39,6 @@ const CrimeMap = () => {
     lat: profile.data.location.coordinates[1],
     lng: profile.data.location.coordinates[0]
   };
-
-  // useEffect(() => {
-  //   geocodeCrimes(crimes);
-  // }, [);
 
   const geocodeCrimes = crimes => {
     crimes.map(crime => {
