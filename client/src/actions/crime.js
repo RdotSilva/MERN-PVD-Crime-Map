@@ -8,7 +8,7 @@ const corsProxy = "https://cors-anywhere.herokuapp.com/";
 
 // Edit this to limit number of results per API request.
 // TODO: Setting this low for testing, increase later.
-const resultsLimit = "?$limit=10";
+const resultsLimit = "?$limit=2";
 
 const crimeAPI = "https://data.providenceri.gov/resource/rz3y-pz8v.json";
 
