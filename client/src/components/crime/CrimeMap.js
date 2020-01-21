@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+
 import {
   LoadScript,
   GoogleMap,
@@ -21,14 +22,12 @@ Geocode.setApiKey(apiKey);
 Geocode.enableDebug();
 
 const CrimeMap = () => {
-  const [crimeData, setCrimeData] = useState({
-    locations: []
-  });
+  const [locationArray, setLocationArray] = useState([]);
 
   // On component mount run Geocode method to update location state for all crimes.
-  useEffect(() => {
-    geocodeCrimes();
-  }, geocodeCrime);
+  // useEffect(() => {
+  //   geocodeCrimes();
+  // }, geocodeCrime);
 
   const dispatch = useDispatch();
 
@@ -50,11 +49,21 @@ const CrimeMap = () => {
     dispatch(fetchCrimeData());
   }, [dispatch]);
 
-  const geocodeCrime = async crime => {
-    const loc = await Geocode.fromAddress(crime.location + " Providence, RI");
+  const geocodeCrimes = async crimes => {
+    crimes.forEach(async crime => {
+      const location = await Geocode.fromAddress(
+        crime.location + " Providence, RI"
+      );
 
-    // Lat/lng object
-    return loc.results[0].geometry.location;
+      setLocationArray([
+        ...locationArray,
+        location.results[0].geometry.location
+      ]);
+
+      console.log(
+        `Location array updated with: ${location.results[0].geometry.location}`
+      );
+    });
   };
 
   return (
@@ -63,6 +72,9 @@ const CrimeMap = () => {
         <div>Loading</div>
       ) : (
         <LoadScript id="script-loader" googleMapsApiKey={apiKey}>
+          <div>
+            <button onClick={() => geocodeCrimes(crimes)}>Cool</button>
+          </div>
           <GoogleMap
             id="crime-map"
             mapContainerStyle={{
