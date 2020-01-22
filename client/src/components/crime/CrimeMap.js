@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import axios from "axios";
 
 import {
   LoadScript,
@@ -39,22 +40,30 @@ const CrimeMap = () => {
     lng: profile.data.location.coordinates[0]
   };
 
+  const corsProxy = "https://cors-anywhere.herokuapp.com/";
+
   // Take the array of crimes from Redux state, map through the crimes and create a geolocation coordinate
   // for each crime. Add this coordinate to locationArray state. This array will be used to plot a marker
   // cluster on the map.
   const geocodeCrimes = crimes => {
+    let locArray = [];
+
     crimes.map(crime => {
-      Geocode.fromAddress(crime.location + "Providence, RI").then(loc => {
-        setLocationArray([
-          ...locationArray,
-          {
-            lat: loc.results[0].geometry.location.lat,
-            lng: loc.results[0].geometry.location.lng
-          }
-        ]);
-      });
+      axios
+        .get(
+          `${corsProxy}https://us1.locationiq.com/v1/search.php?key=566f1952e2f33e&q=${crime.location}+Providence%2C+RI&format=json`
+        )
+        .then(res => {
+          locArray.push({ lat: res.data[0].lat, lng: res.data[0].lon });
+        });
+
+      setLocationArray([...locationArray, locArray]);
     });
   };
+
+  // useEffect(() => {
+  //   geocodeCrimes(crimes);
+  // }, []);
 
   return (
     <Fragment>
