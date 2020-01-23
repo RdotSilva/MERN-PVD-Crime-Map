@@ -19,6 +19,12 @@ const google = window.google;
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
+// Test location array to use for map clustering
+const fakeLocations = [
+  { lat: 41.820312, lng: -71.443397 },
+  { lat: 41.820312, lng: -71.54339 }
+];
+
 // GEOCODE SETTINGS
 Geocode.setApiKey(apiKey);
 Geocode.enableDebug();
