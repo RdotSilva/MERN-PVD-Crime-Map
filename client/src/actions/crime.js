@@ -23,6 +23,8 @@ export const fetchCrimeData = () => async dispatch => {
 
     const crimeData = crimes.data;
 
+    // TODO need to add the geocode for each crime to the crime object, BEFORE sending the payload to Redux.
+
     crimeData.map(crime => {
       axios
         .get(
@@ -33,7 +35,6 @@ export const fetchCrimeData = () => async dispatch => {
         });
     });
 
-    // TODO: Double check res.data the data may come from a different endpoint
     dispatch({
       type: FETCH_CRIMES,
       payload: crimeData
