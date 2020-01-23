@@ -94,6 +94,13 @@ const CrimeMap = () => {
             center={position}
           >
             {/* <Marker position={position} title="Home"></Marker> */}
+            <MarkerClusterer>
+              {clusterer =>
+                fakeLocations.map((location, i) => (
+                  <Marker key={i} position={location} clusterer={clusterer} />
+                ))
+              }
+            </MarkerClusterer>
           </GoogleMap>
         </LoadScript>
       )}
