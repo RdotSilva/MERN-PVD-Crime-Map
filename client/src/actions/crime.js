@@ -15,13 +15,25 @@ const crimeAPI = "https://data.providenceri.gov/resource/rz3y-pz8v.json";
 // Fetch crime data from external API
 export const fetchCrimeData = () => async dispatch => {
   try {
-    const res = await axios.get(corsProxy + crimeAPI + resultsLimit);
-    console.log(`fetchCrimeData try action fired off: ${res}`);
+    const crimes = await axios.get(corsProxy + crimeAPI + resultsLimit);
+    console.log("Crimes", crimes);
+
+    const crimeData = crimes.data;
+
+    crimeData.map(crime => {
+      axios
+        .get(
+          `${corsProxy}https://us1.locationiq.com/v1/search.php?key=566f1952e2f33e&q=${crime.location}+Providence%2C+RI&format=json`
+        )
+        .then(res => {
+          console.log(res.data[0]);
+        });
+    });
 
     // TODO: Double check res.data the data may come from a different endpoint
     dispatch({
       type: FETCH_CRIMES,
-      payload: res.data
+      payload: crimeData
     });
   } catch (error) {
     console.log(`CAUGHT ERROR in fetchCrimeData: ${error.message}`);
