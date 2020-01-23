@@ -25,6 +25,7 @@ Geocode.enableDebug();
 
 const CrimeMap = () => {
   const [locationArray, setLocationArray] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // User Profile data from profile state
   const profile = useSelector(state => state.profile.profile);
@@ -54,11 +55,16 @@ const CrimeMap = () => {
           `${corsProxy}https://us1.locationiq.com/v1/search.php?key=566f1952e2f33e&q=${crime.location}+Providence%2C+RI&format=json`
         )
         .then(res => {
-          locArray.push({ lat: res.data[0].lat, lng: res.data[0].lon });
+          locArray.push({
+            lat: Number(res.data[0].lat),
+            lng: Number(res.data[0].lon)
+          });
         });
 
       setLocationArray([...locationArray, locArray]);
     });
+    setLoading(false);
+    console.log(locationArray);
   };
 
   // useEffect(() => {
@@ -67,14 +73,12 @@ const CrimeMap = () => {
 
   return (
     <Fragment>
-      {isLoading ? (
-        <div>Loading</div>
+      {loading ? (
+        <button onClick={() => geocodeCrimes(crimes)}>GEOCODE CRIMES</button>
       ) : (
         <LoadScript id="script-loader" googleMapsApiKey={apiKey}>
           <div>
-            <button onClick={() => geocodeCrimes(crimes)}>
-              GEOCODE CRIMES
-            </button>
+            <button onClick={() => showState()}>SHOW STATE</button>
           </div>
           <GoogleMap
             id="crime-map"
@@ -84,9 +88,7 @@ const CrimeMap = () => {
             }}
             zoom={15}
             center={position}
-          >
-            <Marker position={position} title="Home"></Marker>
-          </GoogleMap>
+          ></GoogleMap>
         </LoadScript>
       )}
     </Fragment>
