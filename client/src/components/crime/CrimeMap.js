@@ -66,16 +66,22 @@ const CrimeMap = () => {
             lng: parseFloat(res.data[0].lon)
           });
         });
-
-      setLocationArray(locArray);
     });
-    setLoading(false);
+
+    setLocationArray(locArray);
     console.log(locationArray);
+
+    // This needs to be moved. Need to figure out how to trigger state to render the map after the locationArray data is populated.
+    setLoading(false);
   };
 
   // useEffect(() => {
   //   geocodeCrimes(crimes);
   // }, []);
+
+  const loadingToggle = () => {
+    setLoading(false);
+  };
 
   const showState = () => {
     console.log(locationArray);
@@ -84,7 +90,10 @@ const CrimeMap = () => {
   return (
     <Fragment>
       {loading ? (
-        <button onClick={() => geocodeCrimes(crimes)}>GEOCODE CRIMES</button>
+        <Fragment>
+          <button onClick={() => geocodeCrimes(crimes)}>GEOCODE CRIMES</button>
+          <button onClick={() => loadingToggle()}>LOADING?</button>
+        </Fragment>
       ) : (
         <LoadScript id="script-loader" googleMapsApiKey={apiKey}>
           <div>
