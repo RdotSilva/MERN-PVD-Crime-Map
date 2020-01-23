@@ -67,7 +67,7 @@ const CrimeMap = () => {
           });
         });
 
-      setLocationArray([...locationArray, locArray]);
+      setLocationArray(locArray);
     });
     setLoading(false);
     console.log(locationArray);
@@ -102,7 +102,7 @@ const CrimeMap = () => {
             {/* <Marker position={position} title="Home"></Marker> */}
             <MarkerClusterer>
               {clusterer =>
-                fakeLocations.map((location, i) => (
+                locationArray.map((location, i) => (
                   <Marker key={i} position={location} clusterer={clusterer} />
                 ))
               }
