@@ -12,6 +12,9 @@ const resultsLimit = "?$limit=2";
 
 const crimeAPI = "https://data.providenceri.gov/resource/rz3y-pz8v.json";
 
+const geoCodeAPI =
+  "https://us1.locationiq.com/v1/search.php?key=566f1952e2f33e&q=";
+
 // Fetch crime data from external API
 export const fetchCrimeData = () => async dispatch => {
   try {
@@ -23,7 +26,7 @@ export const fetchCrimeData = () => async dispatch => {
     crimeData.map(crime => {
       axios
         .get(
-          `${corsProxy}https://us1.locationiq.com/v1/search.php?key=566f1952e2f33e&q=${crime.location}+Providence%2C+RI&format=json`
+          `${corsProxy}${geoCodeAPI}${crime.location}+Providence%2C+RI&format=json`
         )
         .then(res => {
           console.log(res.data[0]);
