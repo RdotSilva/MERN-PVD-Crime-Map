@@ -71,6 +71,10 @@ const CrimeMap = () => {
   //   geocodeCrimes(crimes);
   // }, []);
 
+  const showState = () => {
+    console.log(locationArray);
+  };
+
   return (
     <Fragment>
       {loading ? (
@@ -88,7 +92,9 @@ const CrimeMap = () => {
             }}
             zoom={15}
             center={position}
-          ></GoogleMap>
+          >
+            {/* <Marker position={position} title="Home"></Marker> */}
+          </GoogleMap>
         </LoadScript>
       )}
     </Fragment>
