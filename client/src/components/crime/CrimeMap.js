@@ -19,18 +19,18 @@ const google = window.google;
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-// Test location array to use for map clustering
-const fakeLocations = [
-  { lat: 41.820312, lng: -71.443397 },
-  { lat: 41.820312, lng: -71.54339 }
-];
-
 // GEOCODE SETTINGS
 Geocode.setApiKey(apiKey);
 Geocode.enableDebug();
 
 const CrimeMap = () => {
   const [locationArray, setLocationArray] = useState([]);
+
+  const [fakeLocations, setFakeLocations] = useState([
+    { lat: 41.820312, lng: -71.443397 },
+    { lat: 41.820312, lng: -71.54339 }
+  ]);
+
   const [loading, setLoading] = useState(true);
 
   // User Profile data from profile state
@@ -62,8 +62,8 @@ const CrimeMap = () => {
         )
         .then(res => {
           locArray.push({
-            lat: Number(res.data[0].lat),
-            lng: Number(res.data[0].lon)
+            lat: parseFloat(res.data[0].lat),
+            lng: parseFloat(res.data[0].lon)
           });
         });
 
