@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
 
 import {
   LoadScript,
@@ -26,11 +25,6 @@ Geocode.enableDebug();
 const CrimeMap = () => {
   const [locationArray, setLocationArray] = useState([]);
 
-  const [fakeLocations, setFakeLocations] = useState([
-    { lat: 41.820312, lng: -71.443397 },
-    { lat: 41.820312, lng: -71.54339 }
-  ]);
-
   const [loading, setLoading] = useState(true);
 
   // User Profile data from profile state
@@ -49,56 +43,23 @@ const CrimeMap = () => {
 
   const corsProxy = "https://cors-anywhere.herokuapp.com/";
 
-  // Take the array of crimes from Redux state, map through the crimes and create a geolocation coordinate
-  // for each crime. Add this coordinate to locationArray state. This array will be used to plot a marker
-  // cluster on the map.
-  const geocodeCrimes = crimes => {
-    let locArray = [];
-
-    crimes.map(crime => {
-      axios
-        .get(
-          `${corsProxy}https://us1.locationiq.com/v1/search.php?key=566f1952e2f33e&q=${crime.location}+Providence%2C+RI&format=json`
-        )
-        .then(res => {
-          locArray.push({
-            lat: parseFloat(res.data[0].lat),
-            lng: parseFloat(res.data[0].lon)
-          });
-        });
+  useEffect(() => {
+    // Map through each crime and create an array of coordinates.
+    // This array will be used to creater a cluster of map pins.
+    let coordArray = crimes.map(crime => {
+      return crime.coords;
     });
 
-    setLocationArray(locArray);
-    console.log(locationArray);
-
-    // This needs to be moved. Need to figure out how to trigger state to render the map after the locationArray data is populated.
+    setLocationArray(coordArray);
     setLoading(false);
-  };
-
-  // useEffect(() => {
-  //   geocodeCrimes(crimes);
-  // }, []);
-
-  const loadingToggle = () => {
-    setLoading(false);
-  };
-
-  const showState = () => {
-    console.log(locationArray);
-  };
+  }, []);
 
   return (
     <Fragment>
       {loading ? (
-        <Fragment>
-          <button onClick={() => geocodeCrimes(crimes)}>GEOCODE CRIMES</button>
-          <button onClick={() => loadingToggle()}>LOADING?</button>
-        </Fragment>
+        <div>Loading...</div>
       ) : (
         <LoadScript id="script-loader" googleMapsApiKey={apiKey}>
-          <div>
-            <button onClick={() => showState()}>SHOW STATE</button>
-          </div>
           <GoogleMap
             id="crime-map"
             mapContainerStyle={{
