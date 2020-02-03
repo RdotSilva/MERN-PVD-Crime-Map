@@ -7,6 +7,9 @@ import {
   MarkerClusterer
 } from "@react-google-maps/api";
 
+// Geolib
+import * as geolib from "geolib";
+
 // Geocode package to make geocoding easier.
 import Geocode from "react-geocode";
 
@@ -24,8 +27,11 @@ Geocode.enableDebug();
 
 const CrimeMap = () => {
   const [locationArray, setLocationArray] = useState([]);
+  const [nearbyCrimeArray, setNearbyCrimeArray] = useState([]);
 
   const [loading, setLoading] = useState(true);
+
+  const [crimeDistance, setCrimeDistance] = useState(1000);
 
   // User Profile data from profile state
   const profile = useSelector(state => state.profile.profile);
@@ -34,11 +40,31 @@ const CrimeMap = () => {
   const isLoading = useSelector(state => state.crime.loading);
   const crimes = useSelector(state => state.crime.crimes);
 
+  // Logged in user coordinate location based off of profile data.
+  const userLocation = profile.data.location.coordinates;
+
   // User Home Position set in profile data
   // Also use this to center map
   const position = {
-    lat: profile.data.location.coordinates[1],
-    lng: profile.data.location.coordinates[0]
+    lat: userLocation[1],
+    lng: userLocation[0]
+  };
+
+  // Check for crimes within a certain radius of user location.
+  // Distance is in METERS and is set using crimeDistance state.
+  const getCrimesNearMe = coordArray => {
+    // Create copy of array
+    let coords = [...coordArray];
+
+    let crimesWithinDistance = coords.filter(coord => {
+      let distance = geolib.getDistance(userLocation, {
+        latitude: coord.lat,
+        longitude: coord.lng
+      });
+
+      return distance <= crimeDistance;
+    });
+    setNearbyCrimeArray(crimesWithinDistance);
   };
 
   const corsProxy = "https://cors-anywhere.herokuapp.com/";
@@ -51,6 +77,10 @@ const CrimeMap = () => {
     });
 
     setLocationArray(coordArray);
+
+    // Find crimes located near me.
+    getCrimesNearMe(coordArray);
+
     setLoading(false);
   }, []);
 
