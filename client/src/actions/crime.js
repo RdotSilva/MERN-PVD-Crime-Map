@@ -31,7 +31,11 @@ export const fetchCrimeData = () => async dispatch => {
           `${corsProxy}${geoCodeAPI}${crime.location}+Providence%2C+RI&format=json`
         )
         .then(res => {
-          console.log(res.data[0]);
+          console.log("Geocode Data: ", res.data[0]);
+          crime.coords = {
+            lat: res.data[0].lat,
+            lng: res.data[0].lon
+          };
         });
     });
 
