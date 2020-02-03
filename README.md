@@ -63,7 +63,13 @@ npm start
 - NodeJS
 - ExpressJS
 - MongoDB Atlas
+- Geolib
 - VSCode
+
+## APIs used
+
+- Google Maps API
+- LocationIQ
 
 ## Screenshots
 
