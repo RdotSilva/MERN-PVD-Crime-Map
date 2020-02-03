@@ -23,7 +23,8 @@ export const fetchCrimeData = () => async dispatch => {
 
     const crimeData = crimes.data;
 
-    // TODO need to add the geocode for each crime to the crime object, BEFORE sending the payload to Redux.
+    // TODO Failed to load resource: the server responded with a status of 429 (Too Many Requests)
+    // Cords proxy error fix this, can only get 2 results and then it errors out.
 
     crimeData.map(crime => {
       axios
