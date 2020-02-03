@@ -33,8 +33,8 @@ export const fetchCrimeData = () => async dispatch => {
         .then(res => {
           console.log("Geocode Data: ", res.data[0]);
           crime.coords = {
-            lat: res.data[0].lat,
-            lng: res.data[0].lon
+            lat: parseFloat(res.data[0].lat),
+            lng: parseFloat(res.data[0].lon)
           };
         });
     });
