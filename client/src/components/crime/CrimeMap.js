@@ -65,6 +65,7 @@ const CrimeMap = () => {
       return distance <= crimeDistance;
     });
     setNearbyCrimeArray(crimesWithinDistance);
+    setLoading(false);
   };
 
   const corsProxy = "https://cors-anywhere.herokuapp.com/";
@@ -80,8 +81,6 @@ const CrimeMap = () => {
 
     // Find crimes located near me.
     getCrimesNearMe(coordArray);
-
-    setLoading(false);
   }, []);
 
   return (
@@ -102,7 +101,7 @@ const CrimeMap = () => {
             {/* <Marker position={position} title="Home"></Marker> */}
             <MarkerClusterer>
               {clusterer =>
-                locationArray.map((location, i) => (
+                nearbyCrimeArray.map((location, i) => (
                   <Marker key={i} position={location} clusterer={clusterer} />
                 ))
               }
